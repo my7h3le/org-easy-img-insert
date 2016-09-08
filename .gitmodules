@@ -1,0 +1,3 @@
+[submodule "auto-img-link-insert"]
+	path = auto-img-link-insert
+	url = git@github.com:tashrifsanil/auto-img-link-insert.git
