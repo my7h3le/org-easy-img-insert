@@ -1,0 +1,39 @@
+#+BEGIN_SRC emacs-lisp
+  (defvar img-type "The image file format")
+  (defvar img-res-dir "The directory that the image has been downloaded to")
+  (defvar curr-org-file-loc "The file location of the currently opened org file")
+  (defvar img-local-file-loc "The file location of the locally downloaded image")
+
+  (defun get-img-file-name (img-link img-name)
+    (setq current-file (c-get-current-file))
+    (setq img-res-dir (concat  (file-name-directory curr-org-file-loc) "Resources/" current-file "/"))
+    (setq img-local-file-loc (concat img-res-dir img-name ".jpg"))
+    (message "Created Dir %s" img-res-dir)
+    )
+
+  (defun auto-img-link-insert (img-link img-name)
+    "Automatically download web image and insert it into emacs"
+    (interactive "MImage link: \nMImage name: ")
+    (setq curr-org-file-loc (buffer-file-name))
+    (setq img-file-name (get-img-file-name img-link img-name))
+    (start-process "dir-creation"
+                   (get-buffer-create "*auto-img-insert*") 
+                   "/usr/bin/mkdir"
+                   "-pv" img-res-dir 
+                   )
+    (start-process "img-download" 
+                   (get-buffer-create "*auto-img-insert*") 
+                   "/usr/bin/wget" 
+                   img-link
+                   "-O" img-local-file-loc
+                   )
+    (embed-img-at-cursor)
+    )
+
+  (defun embed-img-at-cursor ()
+    (insert (concat "[[" img-local-file-loc "]]"))
+    )
+#+END_SRC
+
+#+RESULTS:
+: embed-img-at-cursor
