@@ -15,9 +15,6 @@
 ;; auto-img-link-insert, and it will be embed this data at your current cursor position.
 ;;
 
-;; Powerline is a library for customizing the mode-line that is based on the Vim
-;; Powerline. A collection of predefined themes comes with the package.
-
 ;;; Code:
 
 (defun auto-img/extract-file-format (img-link)
