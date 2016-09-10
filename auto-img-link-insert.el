@@ -19,13 +19,9 @@
 
 (require 'subr-x)
 
-(defvar auto-img-extensions
-  '("jpg" "jpeg" "gif" "bmp" "pgm" "pnm" "svg" "png")
-  "List of file/URL extensions considered to be images.")
-
 (defun auto-img--extract-file-format (img-link)
   "Return the file format for a given web image link (IMG-LINK)."
-  (when (string-match (concat "\\." (regexp-opt auto-img-extensions)) img-link)
+  (when (string-match (concat "\\." (regexp-opt image-file-name-extensions)) img-link)
     (match-string 0 img-link)))
 
 (defun auto-img--get-current-raw-file-name ()
