@@ -6,6 +6,7 @@
 ;; URL: https://github.com/tashrifsanil/auto-img-link-insert
 ;; Version: 1.0
 ;; Keywords: convenience, hypermedia, files
+;; Package-Requires: ((emacs "24.4"))
 
 ;;; Commentary:
 ;;
