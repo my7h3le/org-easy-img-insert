@@ -10,23 +10,26 @@
 ;;; Commentary:
 ;;
 ;; This package makes inserting images from the web int org-mode much easier, and
-;; quicker. Launching, it opens up a mini-buffer where you can paste your link,
-;; enter a name for it and optionally add a caption. The rest is taken care of by
+;; quicker.  Launching, it opens up a mini-buffer where you can paste your link,
+;; enter a name for it and optionally add a caption.  The rest is taken care of by
 ;; auto-img-link-insert, and it will be embed this data at your current cursor position.
 ;;
 
 ;;; Code:
+
+(require 'subr-x)
 
 (defvar auto-img-extensions
   '("jpg" "jpeg" "gif" "bmp" "pgm" "pnm" "svg" "png")
   "List of file/URL extensions considered to be images.")
 
 (defun auto-img--extract-file-format (img-link)
+  "Return the file format for a given web image link (IMG-LINK)."
   (when (string-match (concat "\\." (regexp-opt auto-img-extensions)) img-link)
     (match-string 0 img-link)))
 
 (defun auto-img--get-current-raw-file-name ()
-  ;; Removes the file extension from the currently opened file and it's directory leaving just its raw file name
+  "Remove the file extension from the currently opened file and it's directory leaving just its raw file name."
   (let ((current-file-name (buffer-file-name)))
     (let ((current-file-ext (concat "." (file-name-extension current-file-name))))
       current-file-ext
@@ -38,6 +41,7 @@
             current-raw-file-name))))))
 
 (defun auto-img--create-img-res-dir ()
+  "Create the resource directory for the web image to be downloaded to."
   (let ((current-file-name (buffer-file-name)))
     (let ((current-dir (file-name-directory current-file-name)))
       (let ((img-res-dir (concat  current-dir "Resources/")))
@@ -50,11 +54,12 @@
           img-res-dir)))))
 
 (defun auto-img--get-local-img-file-loc (img-name img-type)
+  "Return the proposed local file location that the web image should be downloaded to, takes (IMG-NAME) and (IMG-TYPE) as args."
   (let ((img-local-file-loc (concat (auto-img--create-img-res-dir) img-name img-type)))
     img-local-file-loc))
 
 (defun auto-img-link-insert (img-link img-name img-caption)
-  "Automatically download web image and insert it into emacs"
+  "Automatically embed web image (IMG-LINK) with a name (IMG-NAME) and an optional caption (IMG-CAPTION) at cursor position in 'org-mode'."
   (interactive "MImage link: \nMImage name: \nMImage caption (optional): ")
 
   (let ((img-type (auto-img--extract-file-format img-link)))
@@ -67,6 +72,7 @@
       (auto-img--embed-img-at-cursor img-name img-caption img-local-file-loc))))
 
 (defun auto-img--embed-img-at-cursor (img-name img-caption img-local-file-loc)
+  "Function that actually embeds image data at current cursor position.  Takes (IMG-NAME),(IMG-CAPTION),(IMG-LOCAL-FILE-LOC) as args."
   (unless (string= "" img-caption)
     (insert (concat "#+CAPTION: " img-caption "\n")))
   (insert (concat "#+NAME: " img-name "\n"))
