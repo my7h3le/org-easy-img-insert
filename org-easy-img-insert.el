@@ -1,4 +1,4 @@
-  ;;; org-easy-img-insert.el --- An easier way to add images from the web in org mode  -*- lexical-binding: t; -*-
+;;; org-easy-img-insert.el --- An easier way to add images from the web in org mode  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016  Tashrif Sanil
 
@@ -8,7 +8,7 @@
 ;; Keywords: convenience, hypermedia, files
 ;; Package-Requires: ((emacs "24.4"))
 
-  ;;; Commentary:
+;;; Commentary:
 ;;
 ;; This package (formerly known as auto-img-link-insert) makes inserting images from the web int org-mode much easier, and
 ;; quicker.  Launching, it opens up a mini-buffer where you can paste your link,
@@ -16,7 +16,7 @@
 ;; org-easy-img-insert, and it will be embed this data at your current cursor position.
 ;;
 
-  ;;; Code:
+;;; Code:
 
 (require 'subr-x)
 
@@ -81,4 +81,4 @@
 
 (provide 'org-easy-img-insert)
 
-  ;;; org-easy-img-insert.el ends here
+;;; org-easy-img-insert.el ends here
