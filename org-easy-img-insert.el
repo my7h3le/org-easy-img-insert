@@ -1,4 +1,5 @@
 ;;; org-easy-img-insert.el --- An easier way to add images from the web in org mode  -*- lexical-binding: t; -*-
+;;;###autoload
 
 ;; Copyright (C) 2016  Tashrif Sanil
 
@@ -59,6 +60,7 @@
   (let ((img-local-file-loc (concat (org-easy-img--create-img-res-dir) img-name img-type)))
     img-local-file-loc))
 
+;;;###autoload
 (defun org-easy-img-insert (img-link img-name img-caption)
   "Automatically embed web image (IMG-LINK) with a name (IMG-NAME) and an optional caption (IMG-CAPTION) at cursor position in 'org-mode'."
   (interactive "MImage link: \nMImage name: \nMImage caption (optional): ")
