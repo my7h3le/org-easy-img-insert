@@ -21,14 +21,9 @@ Hit `M-x` RET `org-easy-img-insert`. Issuing this will open up a mini buffer pro
 ![Result](https://github.com/tashrifsanil/org-easy-img-insert/blob/master/Screenshots/img-insert-screenshot-4.png)
 
 # Installation
-Installation can be done through `MELPA`. Hit `M-x package-install` RET org-easy-img-insert. Then paste this to your `.emacs` or start up script.
+Installation can be done through `MELPA`. Hit `M-x package-install` RET org-easy-img-insert.
 
-```
-(autoload 'org-easy-img-insert "org-easy-img-insert" "Launch org-easy-img-insert with  org-mode" t)
-(add-hook 'org-mode-hook (lambda () (org-easy-img-insert 1)))
-```
-
-If you are using spacemacs then you would need to add org-easy-img-insert to your additional packages, and the above code to your `dotspacemacs/user-init` function.
+If you are using spacemacs then you would need to add org-easy-img-insert to your additional packages.
 
 # How it works?
 * The package will first create a `Resources` directory at the current location of the currently opened file.
