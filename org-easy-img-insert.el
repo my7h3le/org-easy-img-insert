@@ -1,5 +1,4 @@
 ;;; org-easy-img-insert.el --- An easier way to add images from the web in org mode  -*- lexical-binding: t; -*-
-;;;###autoload
 
 ;; Copyright (C) 2016  Tashrif Sanil
 
